@@ -44,8 +44,25 @@ struct Car {
  * 20% or 0.20.
  */
 float calculateCarValue(Car car, float years_from_now) {
-
+    float depreciation;
+    float x = 2.718281828459045;
     // *** Task: Implement this function *** //
+    if (car.make == "Mercedes") {
+        depreciation = 0.15;
+        return car.price_dollars * pow(x,(-depreciation*years_from_now));
+    }
+    else if (car.make == "Tesla") {
+        depreciation = 0.25;
+        return car.price_dollars * pow(x,(-depreciation*years_from_now));
+    }
+    else {
+        depreciation = 0.20;
+        return car.price_dollars * pow(x,(-depreciation*years_from_now));
+    }
+
+    
+   
+    
 
     // *** End Student Code *** //
 }
@@ -53,6 +70,32 @@ float calculateCarValue(Car car, float years_from_now) {
 int main() {
 
     // *** Task: Collect information about the car then calculate its value with calculate_car_value() *** //
+    Car car;
+    float years_from_now;
+    std::cout << "Enter the car make: ";
+    std::cin >> car.make ;
+    std::cout << "Enter the car model: ";
+    std::cin >> car.model;
+    std::cout << "Enter the car year: ";
+    std::cin >> car.year;
+    std::cout << "Enter the car price: ";
+    std::cin >> car.price_dollars;
+    std::string myString = "";
+    std::cout<< "Is the car used? (True/False) ";
+    std::cin >> myString;
+    if (myString=="True") {
+        car.used = true;
+    }
+    else {
+        car.used = false;
+    }
+    
+    std::cout << "How many years from now do you want to estimate the value? ";
+    std::cin >> years_from_now;
+
+    float value = calculateCarValue (car, years_from_now);
+
+    std::cout << "The estimated value of the car is $" << value << std::endl;
 
     // *** End Student Code *** //
 
